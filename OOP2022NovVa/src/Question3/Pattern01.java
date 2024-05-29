@@ -13,14 +13,18 @@ public class Pattern01 extends Thread {
 	
 	public void run() {
 		synchronized(lock) {
-			for(int i = 0; i < count; i++) {
-				System.out.println("working thread 1 : " + i);
+			for(int i = 0; i <= count; i++) {
 				
+				for (int j = 0; j < count - i; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = 0; j < i; j++) {
+                    System.out.print(pattern + " ");
+                }
+                
+				System.out.println();
 				try {
 					Thread.sleep(1000);
-//					if(i == 5) {
-//						lock.wait();
-//					}
 					lock.notify();
 					lock.wait();
 				} catch (InterruptedException e) {
